@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import sys
@@ -15,14 +15,14 @@ def get_stream(args):
 
     streams = json.loads(streaminfo)['streams']
     if args.streamindex >= len(streams):
-        print('CRITICAL - No stream with index %s ' % args.streamindex)
+        print(('CRITICAL - No stream with index %s ' % args.streamindex))
         sys.exit(2)
 
     stream = streams[args.streamindex]
     if args.verbose:
-        print('Using stream %d/%d' % (args.streamindex, len(streams) - 1))
-        for k,v in stream.items():
-            print(k,v)
+        print(('Using stream %d/%d' % (args.streamindex, len(streams) - 1)))
+        for k,v in list(stream.items()):
+            print((k,v))
 
     return stream
 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     args = parser.parse_args(sys.argv[1:])
 
     if args.verbose:
-            print('Application arguments:\n%s' % str(vars(args)))
+            print(('Application arguments:\n%s' % str(vars(args))))
 
     check_stream(args)
 
